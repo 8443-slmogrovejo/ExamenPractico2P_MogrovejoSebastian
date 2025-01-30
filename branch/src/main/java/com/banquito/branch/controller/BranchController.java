@@ -66,10 +66,12 @@ public class BranchController {
     @PutMapping("/{id}")
     public ResponseEntity<BranchDto> update(
             @PathVariable("id") String id,
-            @RequestBody BranchDto dto) {
+            @RequestBody String phoneNumber) {
         try {
-            dto.setId(id);
-            Branch branch = this.service.update(this.mapper.toModel(dto));
+            Branch branch = this.service.findById(id);
+            branch.setPhoneNumber(phoneNumber);
+            branch = this.service.update(branch);
+            log.info("Se actualizó el teléfono de la sucursal {}", id);
             return ResponseEntity.ok(this.mapper.toDto(branch));
         } catch (NotFoundException e) {
             log.error("No se encontró la sucursal con id: {}", id);
