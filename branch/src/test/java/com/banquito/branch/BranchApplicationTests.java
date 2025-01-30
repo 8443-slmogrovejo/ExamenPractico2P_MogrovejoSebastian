@@ -1,10 +1,10 @@
-package com.banquito.sucursal;
+package com.banquito.branch;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SucursalApplicationTests {
+class BranchApplicationTests {
 
 	@Test
 	void contextLoads() {
