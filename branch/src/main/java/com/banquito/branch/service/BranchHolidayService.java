@@ -58,4 +58,12 @@ public class BranchHolidayService {
         BranchHoliday holiday = this.findById(id);
         this.repository.delete(holiday);
     }
+
+    public void deleteByDate(LocalDate date) {
+        List<BranchHoliday> holidays = this.findByDate(date);
+        if (holidays.isEmpty()) {
+            throw new NotFoundException(date.toString(), ENTITY_NAME);
+        }
+        this.repository.deleteAll(holidays);
+    }
 }
